@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
+    id 'kotlin'
 }
 
 java {
@@ -31,4 +31,6 @@ dependencies {
 
     // Coroutines core
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
+    testImplementation project(":testing")
 }

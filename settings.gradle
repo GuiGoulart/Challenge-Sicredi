@@ -6,3 +6,4 @@ pluginManagement {
 rootProject.name = "Challenge"
 include ':app'
 include ':core'
+include ':testing'
