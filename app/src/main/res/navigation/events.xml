@@ -26,5 +26,17 @@
         <argument
             android:name="detailViewArg"
             app:argType="com.severo.challenge.presentation.detail.DetailViewArg" />
+        <action
+            android:id="@+id/action_detailFragment_to_checkFragment"
+            app:destination="@id/checkFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/checkFragment"
+        android:name="com.severo.challenge.presentation.check.CheckFragment"
+        android:label="fragment_check"
+        tools:layout="@layout/fragment_check" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </dialog>
 </navigation>

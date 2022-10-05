@@ -8,7 +8,6 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.severo.challenge.R
 import com.severo.challenge.presentation.detail.DetailViewArg
-import com.severo.challenge.presentation.detail.FavoriteUiActionStateLiveData
 import com.severo.core.usecase.*
 import com.severo.core.usecase.base.ResultStatus
 import com.severo.testing.MainCoroutineRule

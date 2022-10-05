@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shimmer_events"
@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/text_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
@@ -32,21 +32,51 @@
 
     <TextView
         android:id="@+id/text_price"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Preço: R$ 15.99"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_description" />
+        app:layout_constraintTop_toBottomOf="@+id/text_description"
+        tools:text="Preço: R$ 15.99" />
 
     <TextView
         android:id="@+id/text_date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Data: 19/05/2022"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/text_description" />
-</LinearLayout>
+        app:layout_constraintStart_toEndOf="@+id/text_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_description"
+        tools:text="Data: 19/05/2022" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center"
+        app:layout_constraintGuide_percent="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/button_check_in"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Faça seu check-in"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_price" />
+
+    <Button
+        android:id="@+id/button_shared"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Compartilhe esse evento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_center"
+        app:layout_constraintTop_toBottomOf="@+id/text_price" />
+</androidx.constraintlayout.widget.ConstraintLayout>

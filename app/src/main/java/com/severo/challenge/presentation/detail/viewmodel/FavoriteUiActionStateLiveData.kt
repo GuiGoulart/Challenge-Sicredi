@@ -1,18 +1,15 @@
-package com.severo.challenge.presentation.detail
+package com.severo.challenge.presentation.detail.viewmodel
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataScope
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.switchMap
-import com.severo.core.usecase.CheckFavoriteUseCase
-import com.severo.core.usecase.RemoveFavoriteUseCase
+import androidx.lifecycle.*
 import com.severo.challenge.R
+import com.severo.challenge.presentation.detail.DetailViewArg
 import com.severo.challenge.util.extensions.watchStatus
 import com.severo.core.usecase.AddFavoriteUseCase
+import com.severo.core.usecase.CheckFavoriteUseCase
+import com.severo.core.usecase.RemoveFavoriteUseCase
 import kotlin.coroutines.CoroutineContext
 
 class FavoriteUiActionStateLiveData(

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
         <activity
-            android:name=".presentation.MainActivity"
+             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,5 +22,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

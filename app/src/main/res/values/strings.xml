@@ -6,6 +6,7 @@
 
     <string name="error_loading_data">Error when trying to load data</string>
     <string name="error_remove_favorite">Error when trying to remove favorite</string>
+    <string name="error_check">Unable to check-in</string>
     <string name="error_add_favorite">Error when trying to add favorite</string>
     <string name="error_loading_more_try_again">Error when trying to load the next page. Try again</string>
 
@@ -26,5 +27,7 @@
 
     <string name="description_event"><b>Description about the event: </b> %1$s</string>
     <string name="price_event"><b>Preço: </b> %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

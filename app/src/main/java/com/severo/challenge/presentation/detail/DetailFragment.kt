@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.severo.challenge.R
@@ -13,7 +15,8 @@ import com.severo.challenge.databinding.FragmentDetailBinding
 import com.severo.challenge.framework.imageloader.ImageLoader
 import com.severo.challenge.presentation.detail.viewmodel.EventDetailActionStateLiveData
 import com.severo.challenge.presentation.detail.viewmodel.EventDetailViewModel
-import com.severo.challenge.util.dateFormat
+import com.severo.challenge.presentation.detail.viewmodel.FavoriteUiActionStateLiveData
+import com.severo.challenge.presentation.events.EventsFragmentDirections
 import com.severo.challenge.util.extensions.showShortToast
 import com.severo.challenge.util.priceFormatCurrency
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,6 +58,7 @@ class DetailFragment : Fragment() {
 
         loadCategoriesAndObserveUiState(detailViewArg)
         setAndObserveFavoriteUiState(detailViewArg)
+        showBottomSheetDialog(detailViewArg.id)
     }
 
     private fun loadCategoriesAndObserveUiState(detailViewArg: DetailViewArg) {
@@ -64,12 +68,14 @@ class DetailFragment : Fragment() {
                 EventDetailActionStateLiveData.EventsDetailState.Loading -> FLIPPER_CHILD_POSITION_LOADING
                 is EventDetailActionStateLiveData.EventsDetailState.Success -> {
                     binding.includeViewDetailSuccessState.textTitle.text = uiState.detailEvent.title
-                    binding.includeViewDetailSuccessState.textDescription.text = context?.resources?.getString(
-                        R.string.description_event, uiState.detailEvent.description
-                    )
-                    binding.includeViewDetailSuccessState.textPrice.text = context?.resources?.getString(
-                        R.string.price_event, uiState.detailEvent.price.priceFormatCurrency()
-                    )
+                    binding.includeViewDetailSuccessState.textDescription.text =
+                        context?.resources?.getString(
+                            R.string.description_event, uiState.detailEvent.description
+                        )
+                    binding.includeViewDetailSuccessState.textPrice.text =
+                        context?.resources?.getString(
+                            R.string.price_event, uiState.detailEvent.price.priceFormatCurrency()
+                        )
 
                     FLIPPER_CHILD_POSITION_DETAIL
                 }
@@ -94,7 +100,9 @@ class DetailFragment : Fragment() {
 
             state.observe(viewLifecycleOwner) { uiState ->
                 binding.flipperFavorite.displayedChild = when (uiState) {
-                    FavoriteUiActionStateLiveData.UiState.Loading -> FLIPPER_FAVORITE_CHILD_POSITION_LOADING
+                    FavoriteUiActionStateLiveData.UiState.Loading -> {
+                        FLIPPER_FAVORITE_CHILD_POSITION_LOADING
+                    }
                     is FavoriteUiActionStateLiveData.UiState.Icon -> {
                         binding.imageFavoriteIcon.setImageResource(uiState.icon)
                         FLIPPER_FAVORITE_CHILD_POSITION_IMAGE
@@ -105,6 +113,19 @@ class DetailFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun showBottomSheetDialog(eventId: Int) {
+        binding.includeViewDetailSuccessState.buttonCheckIn.setOnClickListener {
+            val extras = FragmentNavigatorExtras()
+
+            val directions = DetailFragmentDirections
+                .actionDetailFragmentToCheckFragment(
+                    eventId
+                )
+
+            findNavController().navigate(directions, extras)
         }
     }
 

@@ -27,4 +27,7 @@ interface UseCaseModule {
 
     @Binds
     fun bindGetFavoritesUseCase(useCase: GetFavoritesUseCaseImpl): GetFavoritesUseCase
+
+    @Binds
+    fun bindPostCheckUseCase(useCase: PostCheckUseCaseImpl): PostCheckUseCase
 }

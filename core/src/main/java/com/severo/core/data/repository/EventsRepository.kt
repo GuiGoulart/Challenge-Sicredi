@@ -7,4 +7,6 @@ interface EventsRepository {
     suspend fun getEvents(): List<Event>
 
     suspend fun getDetailEvent(eventId: Int): Event
+
+    suspend fun postCheck(eventId: Int): Event
 }
