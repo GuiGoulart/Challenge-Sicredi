@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+rootProject.name = "Challenge"
+include ':app'
+include ':core'
