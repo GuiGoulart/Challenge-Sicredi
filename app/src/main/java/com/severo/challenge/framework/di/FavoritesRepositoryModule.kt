@@ -1,7 +1,7 @@
 package com.severo.challenge.framework.di
 
 import com.severo.challenge.framework.FavoritesRepositoryImpl
-import com.severo.challenge.framework.local.RoomFavoritesDataSource
+import com.severo.challenge.framework.data.local.RoomFavoritesDataSource
 import com.severo.core.data.repository.FavoritesLocalDataSource
 import com.severo.core.data.repository.FavoritesRepository
 import dagger.Binds

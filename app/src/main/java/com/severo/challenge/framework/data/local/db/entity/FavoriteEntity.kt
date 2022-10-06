@@ -1,4 +1,4 @@
-package com.severo.challenge.framework.db.entity
+package com.severo.challenge.framework.data.local.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

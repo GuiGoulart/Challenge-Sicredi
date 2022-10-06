@@ -63,11 +63,11 @@ class FavoritesViewModelTest {
 
             verify(uiStateObserver).onChanged(isA<FavoritesViewModel.UiState.ShowFavorite>())
 
-            val uiStateSuccess =
+            val uiState =
                 favoritesViewModel.state.value as FavoritesViewModel.UiState.ShowFavorite
-            val categoriesParentList = uiStateSuccess.favorites
+            val result = uiState.favorites
 
-            assertEquals(1, categoriesParentList.size)
+            assertEquals(1, result.size)
         }
 
     @Test

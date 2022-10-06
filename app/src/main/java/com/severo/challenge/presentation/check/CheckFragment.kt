@@ -1,19 +1,19 @@
 package com.severo.challenge.presentation.check
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.severo.challenge.R
 import com.severo.challenge.databinding.FragmentCheckBinding
 import com.severo.challenge.presentation.check.viewModel.CheckActionStateLiveData
 import com.severo.challenge.presentation.check.viewModel.CheckViewModel
 import com.severo.challenge.presentation.detail.DetailFragment
-import com.severo.challenge.presentation.detail.DetailFragmentArgs
-import com.severo.challenge.presentation.detail.DetailViewArg
-import com.severo.challenge.presentation.detail.viewmodel.EventDetailViewModel
 import com.severo.challenge.presentation.detail.viewmodel.FavoriteUiActionStateLiveData
 import com.severo.challenge.util.extensions.showShortToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,21 +47,37 @@ class CheckFragment : BottomSheetDialogFragment() {
 
     private fun setAndObserveCheckUiState(idEvent: Int) {
         viewModel.check.run {
-            check(idEvent)
 
-//            binding.imageFavoriteIcon.setOnClickListener {
-//                update(detailViewArg)
-//            }
+            binding.buttonCheckIn.setOnClickListener {
+                check(idEvent, binding.editName.text.toString(), binding.editEmail.text.toString())
+            }
 
             state.observe(viewLifecycleOwner) { uiState ->
-                when (uiState) {
-                    CheckActionStateLiveData.CheckActionState.Loading -> {}
-                    is CheckActionStateLiveData.CheckActionState.Success -> {}
+                binding.flipperCheck.displayedChild = when (uiState) {
+                    CheckActionStateLiveData.CheckActionState.Loading -> {
+                        FLIPPER_CHILD_POSITION_LOADING
+                    }
+                    is CheckActionStateLiveData.CheckActionState.Success -> {
+                        this@CheckFragment.dismiss()
+                        FLIPPER_CHILD_POSITION_SUCCESS
+                    }
                     is CheckActionStateLiveData.CheckActionState.Error -> {
                         showShortToast(uiState.messageResId)
+                        this@CheckFragment.dismiss()
+                        FLIPPER_CHILD_POSITION_ERROR
+                    }
+                    is CheckActionStateLiveData.CheckActionState.Empty -> {
+                        showShortToast(uiState.messageResId)
+                        FLIPPER_CHILD_POSITION_ERROR
                     }
                 }
             }
         }
+    }
+
+    companion object {
+        private const val FLIPPER_CHILD_POSITION_LOADING = 1
+        private const val FLIPPER_CHILD_POSITION_SUCCESS = 0
+        private const val FLIPPER_CHILD_POSITION_ERROR = 0
     }
 }

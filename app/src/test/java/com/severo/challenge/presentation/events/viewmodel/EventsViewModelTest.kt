@@ -67,11 +67,11 @@ class EventsViewModelTest {
 
             verify(uiStateObserver).onChanged(isA<EventsActionStateLiveData.EventsState.Success>())
 
-            val uiStateSuccess =
+            val uiState =
                 eventsViewModel.events.state.value as EventsActionStateLiveData.EventsState.Success
-            val categoriesParentList = uiStateSuccess.detailParentList
+            val result = uiState.detailParentList
 
-            Assert.assertEquals(1, categoriesParentList.size)
+            Assert.assertEquals(1, result.size)
         }
 
     @Test

@@ -21,35 +21,48 @@ class CheckActionStateLiveData(
         liveData(coroutineContext) {
             when (it) {
                 is Action.Check -> {
-                    postCheckUseCase.invoke(
-                        PostCheckUseCase.PostCheckParams(it.eventId)
-                    ).watchStatus(
-                        loading = {
-                            emit(CheckActionState.Loading)
-                        },
-                        success = { data ->
-                            emit(CheckActionState.Success(data))
-                        },
-                        error = {
-                            emit(CheckActionState.Error(R.string.error_check))
-                        }
-                    )
+                    if(it.name.isNotEmpty() && it.email.isNotEmpty()) {
+                        postCheckUseCase.invoke(
+                            PostCheckUseCase.PostCheckParams(it.eventId, it.name, it.email)
+                        ).watchStatus(
+                            loading = {
+                                emit(CheckActionState.Loading)
+                            },
+                            success = { data ->
+                                emit(CheckActionState.Success(data))
+                            },
+                            error = {
+                                emit(CheckActionState.Error(R.string.error_check))
+                            }
+                        )
+                    } else {
+                        emit(CheckActionState.Empty(R.string.error_check_empty))
+                    }
                 }
             }
         }
     }
 
-    fun check(eventId: Int) {
-        action.value = Action.Check(eventId)
+    fun check(
+        eventId: Int,
+        name: String,
+        email: String
+    ) {
+        action.value = Action.Check(eventId, name, email)
     }
 
     sealed class CheckActionState {
         object Loading : CheckActionState()
         data class Success(val detailEvent: Event) : CheckActionState()
         data class Error(@StringRes val messageResId: Int) : CheckActionState()
+        data class Empty(@StringRes val messageResId: Int) : CheckActionState()
     }
 
     sealed class Action {
-        data class Check(val eventId: Int) : Action()
+        data class Check(
+            val eventId: Int,
+            val name: String,
+            val email: String
+        ) : Action()
     }
 }

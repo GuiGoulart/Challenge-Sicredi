@@ -16,9 +16,9 @@ import com.severo.challenge.framework.imageloader.ImageLoader
 import com.severo.challenge.presentation.detail.viewmodel.EventDetailActionStateLiveData
 import com.severo.challenge.presentation.detail.viewmodel.EventDetailViewModel
 import com.severo.challenge.presentation.detail.viewmodel.FavoriteUiActionStateLiveData
-import com.severo.challenge.presentation.events.EventsFragmentDirections
 import com.severo.challenge.util.extensions.showShortToast
 import com.severo.challenge.util.priceFormatCurrency
+import com.severo.challenge.util.sharingEvent
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -59,6 +59,7 @@ class DetailFragment : Fragment() {
         loadCategoriesAndObserveUiState(detailViewArg)
         setAndObserveFavoriteUiState(detailViewArg)
         showBottomSheetDialog(detailViewArg.id)
+        sharingEvent(detailViewArg)
     }
 
     private fun loadCategoriesAndObserveUiState(detailViewArg: DetailViewArg) {
@@ -126,6 +127,16 @@ class DetailFragment : Fragment() {
                 )
 
             findNavController().navigate(directions, extras)
+        }
+    }
+
+    private fun sharingEvent(detailViewArg: DetailViewArg) {
+        binding.includeViewDetailSuccessState.buttonShared.setOnClickListener {
+            requireContext().sharingEvent(
+                detailViewArg.title,
+                detailViewArg.description,
+                detailViewArg.price
+            )
         }
     }
 

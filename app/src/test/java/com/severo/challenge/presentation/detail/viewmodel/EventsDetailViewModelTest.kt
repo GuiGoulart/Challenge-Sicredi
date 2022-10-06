@@ -86,15 +86,15 @@ class EventsDetailViewModelTest {
 
             verify(uiStateObserver).onChanged(isA<EventDetailActionStateLiveData.EventsDetailState.Success>())
 
-            val uiStateSuccess =
+            val uiState =
                 detailViewModel.events.state.value as EventDetailActionStateLiveData.EventsDetailState.Success
-            val categoriesParentList = uiStateSuccess.detailEvent
+            val result = uiState.detailEvent
 
-            assertEquals(event.price, categoriesParentList.price, event.price)
-            assertEquals(event.description, categoriesParentList.description)
-            assertEquals(event.id, categoriesParentList.id)
-            assertEquals(event.title, categoriesParentList.title)
-            assertEquals(event.image, categoriesParentList.image)
+            assertEquals(event.price, result.price, event.price)
+            assertEquals(event.description, result.description)
+            assertEquals(event.id, result.id)
+            assertEquals(event.title, result.title)
+            assertEquals(event.image, result.image)
         }
 
     @Test

@@ -2,8 +2,8 @@ package com.severo.challenge.framework.di
 
 import com.severo.challenge.BuildConfig
 import com.severo.challenge.framework.di.qualifier.BaseUrl
-import com.severo.challenge.framework.network.ChallengeApi
-import com.severo.challenge.framework.network.interceptor.AuthorizationInterceptor
+import com.severo.challenge.framework.data.network.ChallengeApi
+import com.severo.challenge.framework.data.network.interceptor.AuthorizationInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

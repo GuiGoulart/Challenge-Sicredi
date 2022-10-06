@@ -1,11 +1,11 @@
-package com.severo.challenge.framework.db.dao
+package com.severo.challenge.framework.data.local.db.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Delete
-import com.severo.challenge.framework.db.entity.FavoriteEntity
+import com.severo.challenge.framework.data.local.db.entity.FavoriteEntity
 import com.severo.core.data.DbConstants
 import kotlinx.coroutines.flow.Flow
 

@@ -14,7 +14,11 @@ interface PostCheckUseCase {
 
     operator fun invoke(params: PostCheckParams): Flow<ResultStatus<Event>>
 
-    data class PostCheckParams(val eventId: Int)
+    data class PostCheckParams(
+        val eventId: Int,
+        val name: String,
+        val email: String
+    )
 }
 
 class PostCheckUseCaseImpl @Inject constructor(
@@ -25,7 +29,7 @@ class PostCheckUseCaseImpl @Inject constructor(
 
     override suspend fun doWork(params: PostCheckUseCase.PostCheckParams): ResultStatus<Event> {
         return withContext(dispatchers.io()) {
-            val events = repository.postCheck(params.eventId)
+            val events = repository.postCheck(params.eventId, params.name, params.email)
             ResultStatus.Success(events)
         }
     }

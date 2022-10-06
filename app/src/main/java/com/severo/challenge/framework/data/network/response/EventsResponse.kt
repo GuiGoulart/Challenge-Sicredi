@@ -1,4 +1,4 @@
-package com.severo.challenge.framework.network.response
+package com.severo.challenge.framework.data.network.response
 
 import com.google.gson.annotations.SerializedName
 import com.severo.core.domain.model.Event

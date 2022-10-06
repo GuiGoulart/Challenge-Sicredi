@@ -1,7 +1,7 @@
-package com.severo.challenge.framework.network
+package com.severo.challenge.framework.data.network
 
-import com.severo.challenge.framework.network.request.CheckRequest
-import com.severo.challenge.framework.network.response.EventsResponse
+import com.severo.challenge.framework.data.network.request.CheckRequest
+import com.severo.challenge.framework.data.network.response.EventsResponse
 import retrofit2.http.*
 
 interface ChallengeApi {

@@ -8,5 +8,5 @@ interface EventsRepository {
 
     suspend fun getDetailEvent(eventId: Int): Event
 
-    suspend fun postCheck(eventId: Int): Event
+    suspend fun postCheck(eventId: Int, name: String, email: String): Event
 }

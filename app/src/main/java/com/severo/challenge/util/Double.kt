@@ -9,9 +9,3 @@ fun Double.priceFormatCurrency(): String {
     val symbol: String = currency.symbol
     return "$symbol$this"
 }
-
-fun Long.dateFormat(): String {
-    val myLong = System.currentTimeMillis() + (this * 1000)
-    val itemDate = Date(myLong)
-    return SimpleDateFormat("dd/MM/yyyy").format(itemDate)
-}

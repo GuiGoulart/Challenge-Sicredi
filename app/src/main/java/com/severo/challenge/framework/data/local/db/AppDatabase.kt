@@ -1,9 +1,9 @@
-package com.severo.challenge.framework.db
+package com.severo.challenge.framework.data.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.severo.challenge.framework.db.dao.FavoriteDao
-import com.severo.challenge.framework.db.entity.FavoriteEntity
+import com.severo.challenge.framework.data.local.db.dao.FavoriteDao
+import com.severo.challenge.framework.data.local.db.entity.FavoriteEntity
 
 @Database(
     entities = [

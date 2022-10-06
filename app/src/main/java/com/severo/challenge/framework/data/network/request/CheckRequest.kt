@@ -1,4 +1,4 @@
-package com.severo.challenge.framework.network.request
+package com.severo.challenge.framework.data.network.request
 
 import com.severo.core.domain.model.Check
 

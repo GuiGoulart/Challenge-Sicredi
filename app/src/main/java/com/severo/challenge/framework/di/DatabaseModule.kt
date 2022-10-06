@@ -2,7 +2,7 @@ package com.severo.challenge.framework.di
 
 import android.content.Context
 import androidx.room.Room
-import com.severo.challenge.framework.db.AppDatabase
+import com.severo.challenge.framework.data.local.db.AppDatabase
 import com.severo.core.data.DbConstants
 import dagger.Module
 import dagger.Provides

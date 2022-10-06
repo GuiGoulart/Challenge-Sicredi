@@ -1,4 +1,4 @@
-package com.severo.challenge.framework.network.interceptor
+package com.severo.challenge.framework.data.network.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

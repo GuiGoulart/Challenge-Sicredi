@@ -17,12 +17,12 @@ class EventsRepositoryImpl @Inject constructor(
         return remoteDataSource.fetchDetailEvents(eventId)
     }
 
-    override suspend fun postCheck(eventId: Int): Event {
+    override suspend fun postCheck(eventId: Int, name: String, email: String): Event {
         return remoteDataSource.sendCheckEvent(
             Check(
                 eventId = eventId,
-                name = "",
-                email = ""
+                name = name,
+                email = email
             )
         )
     }

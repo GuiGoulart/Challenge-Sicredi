@@ -1,8 +1,8 @@
-package com.severo.challenge.framework.local
+package com.severo.challenge.framework.data.local
 
-import com.severo.challenge.framework.db.dao.FavoriteDao
-import com.severo.challenge.framework.db.entity.FavoriteEntity
-import com.severo.challenge.framework.db.entity.toEventsModel
+import com.severo.challenge.framework.data.local.db.dao.FavoriteDao
+import com.severo.challenge.framework.data.local.db.entity.FavoriteEntity
+import com.severo.challenge.framework.data.local.db.entity.toEventsModel
 import com.severo.core.data.repository.FavoritesLocalDataSource
 import com.severo.core.domain.model.Event
 import kotlinx.coroutines.flow.Flow

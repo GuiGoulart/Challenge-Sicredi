@@ -6,7 +6,6 @@ import com.severo.core.usecase.base.ResultStatus
 import com.severo.testing.MainCoroutineRule
 import com.severo.testing.model.EventFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
@@ -19,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class GetEventsUseCaseImplTest {
+class PostCheckUseCaseImplTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
@@ -28,11 +27,11 @@ class GetEventsUseCaseImplTest {
 
     private val event = EventFactory().create(EventFactory.Events.ADOCAO)
 
-    private lateinit var getEventsUseCase: GetEventsUseCase
+    private lateinit var postCheckUseCase: PostCheckUseCase
 
     @Before
     fun setUp() {
-        getEventsUseCase = GetEventsUseCaseImpl(
+        postCheckUseCase = PostCheckUseCaseImpl(
             repository,
             mainCoroutineRule.testDispatcherProvider
         )
@@ -41,10 +40,22 @@ class GetEventsUseCaseImplTest {
     @Test
     fun `should return Success from ResultStatus when get both requests return success`() =
         runTest {
-            whenever(repository.getEvents()).thenReturn(listOf(event))
+            whenever(
+                repository.postCheck(
+                    eventId = event.id,
+                    name = "name",
+                    email = "email"
+                )
+            ).thenReturn(event)
 
-            val result = getEventsUseCase
-                .invoke(GetEventsUseCase.GetEventsParams)
+            val result = postCheckUseCase
+                .invoke(
+                    PostCheckUseCase.PostCheckParams(
+                        eventId = event.id,
+                        name = "name",
+                        email = "email"
+                    )
+                )
             val resultList = result.toList()
             assertEquals(ResultStatus.Loading, resultList[0])
             assertTrue(resultList[1] is ResultStatus.Success)
@@ -53,10 +64,22 @@ class GetEventsUseCaseImplTest {
     @Test
     fun `should return Error from ResultStatus when get events request returns error`() =
         runTest {
-            whenever(repository.getEvents()).thenAnswer { throw Throwable() }
+            whenever(
+                repository.postCheck(
+                    eventId = event.id,
+                    name = "name",
+                    email = "email"
+                )
+            ).thenAnswer { throw Throwable() }
 
-            val result = getEventsUseCase
-                .invoke(GetEventsUseCase.GetEventsParams)
+            val result = postCheckUseCase
+                .invoke(
+                    PostCheckUseCase.PostCheckParams(
+                        eventId = event.id,
+                        name = "name",
+                        email = "email"
+                    )
+                )
 
             val resultList = result.toList()
             assertEquals(ResultStatus.Loading, resultList[0])

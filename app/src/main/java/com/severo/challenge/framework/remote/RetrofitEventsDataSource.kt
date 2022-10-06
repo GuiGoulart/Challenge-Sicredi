@@ -1,8 +1,8 @@
 package com.severo.challenge.framework.remote
 
-import com.severo.challenge.framework.network.ChallengeApi
-import com.severo.challenge.framework.network.request.toCheckRequest
-import com.severo.challenge.framework.network.response.toEventModel
+import com.severo.challenge.framework.data.network.ChallengeApi
+import com.severo.challenge.framework.data.network.request.toCheckRequest
+import com.severo.challenge.framework.data.network.response.toEventModel
 import com.severo.core.data.repository.EventsRemoteDataSource
 import com.severo.core.domain.model.Check
 import com.severo.core.domain.model.Event
